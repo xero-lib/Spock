@@ -12,7 +12,7 @@
 namespace spock {
 
 SpockSwapchain::SpockSwapchain(SpockDevice &deviceRef, VkExtent2D extent)
-    : device{deviceRef}, windowExtent{extent} {
+    : device { deviceRef }, windowExtent { extent } {
   createSwapChain();
   createImageViews();
   createRenderPass();
@@ -183,7 +183,7 @@ void SpockSwapchain::createSwapChain() {
 void SpockSwapchain::createImageViews() {
   swapchainImageViews.resize(swapchainImages.size());
   for (size_t i = 0; i < swapchainImages.size(); i++) {
-    VkImageViewCreateInfo viewInfo{};
+    VkImageViewCreateInfo viewInfo {};
     viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
     viewInfo.image = swapchainImages[i];
     viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
@@ -202,7 +202,7 @@ void SpockSwapchain::createImageViews() {
 }
 
 void SpockSwapchain::createRenderPass() {
-  VkAttachmentDescription depthAttachment{};
+  VkAttachmentDescription depthAttachment {};
   depthAttachment.format = findDepthFormat();
   depthAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
   depthAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
@@ -212,7 +212,7 @@ void SpockSwapchain::createRenderPass() {
   depthAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
   depthAttachment.finalLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
 
-  VkAttachmentReference depthAttachmentRef{};
+  VkAttachmentReference depthAttachmentRef {};
   depthAttachmentRef.attachment = 1;
   depthAttachmentRef.layout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
 
@@ -293,7 +293,7 @@ void SpockSwapchain::createDepthResources() {
   depthImageViews.resize(imageCount());
 
   for (int i = 0; i < depthImages.size(); i++) {
-    VkImageCreateInfo imageInfo{};
+    VkImageCreateInfo imageInfo {};
     imageInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
     imageInfo.imageType = VK_IMAGE_TYPE_2D;
     imageInfo.extent.width = swapchainExtent.width;
@@ -315,7 +315,7 @@ void SpockSwapchain::createDepthResources() {
         depthImages[i],
         depthImageMemorys[i]);
 
-    VkImageViewCreateInfo viewInfo{};
+    VkImageViewCreateInfo viewInfo {};
     viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
     viewInfo.image = depthImages[i];
     viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
