@@ -11,7 +11,7 @@ namespace spock {
     struct PipelineConfigInfo {
         VkViewport viewport;
         VkRect2D scissor;
-        VkPipelineViewportStateCreateInfo viewportInfo;
+        // VkPipelineViewportStateCreateInfo viewportInfo;
         VkPipelineInputAssemblyStateCreateInfo inputAssemblyInfo;
         VkPipelineRasterizationStateCreateInfo rasterizationInfo;
         VkPipelineMultisampleStateCreateInfo multisampleInfo;
@@ -38,6 +38,7 @@ namespace spock {
         void operator=(const SpockPipeline) = delete;
 
         static PipelineConfigInfo defaultPipelineConfigInfo(uint32_t width, uint32_t height);
+        void bind(VkCommandBuffer commandBuffer);
 
     private:
         static std::vector<char> readFile(const std::string& filepath);

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdint>
 #include <string>
 #include <vulkan/vulkan_core.h>
 #define GLFW_INCLUDE_VULKAN
@@ -16,13 +17,15 @@ namespace spock {
         SpockWindow &operator=(const SpockWindow&) = delete;
 
         inline bool shouldClose() { return glfwWindowShouldClose(window); }
+
+        VkExtent2D getExtent() { return { width, height }; };
         void createWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
 
     private:
         void initWindow();
 
-        const int width;
-        const int height;
+        const uint32_t width;
+        const uint32_t height;
 
         std::string windowName;
         GLFWwindow* window;
